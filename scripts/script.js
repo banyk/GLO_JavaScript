@@ -45,10 +45,10 @@ let expenses1 = prompt('Введите обязательную статью р�
   amount2 = +prompt('Во сколько это обойдется?');
 
 let budgetMonth = money - amount1 - amount2;
-console.log('budgetMonth: ', budgetMonth);
+console.log('Бюджет на месяц: ', budgetMonth);
 // рассчёт бюджета на месяц
 
-console.log(`Цель ${mission} будет достигнута за ${Math.ceil(mission / budgetMonth)} месяцев (-a)`);
+console.log(`Цель будет достигнута за ${Math.ceil(mission / budgetMonth)} месяцев (-a)`);
 // рассчёт месяцев для достижения цели
 
 budgetDay = Math.floor(budgetMonth / 30);
