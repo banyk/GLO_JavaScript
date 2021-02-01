@@ -33,8 +33,6 @@ console.log(addExpenses.toLowerCase().split(', '));
 
 let budgetDay = money / 30;
 
-console.log('Бюджет на день: ', budgetDay);
-
 // Lesson 03
 
 money = +prompt('Ваш месячный доход?');
@@ -50,7 +48,7 @@ let budgetMonth = money - amount1 - amount2;
 console.log('budgetMonth: ', budgetMonth);
 // рассчёт бюджета на месяц
 
-console.log(`Цель ${mission} будет достигнута за ${Math.ceil(mission / budgetMonth)} месяцев`);
+console.log(`Цель ${mission} будет достигнута за ${Math.ceil(mission / budgetMonth)} месяцев (-a)`);
 // рассчёт месяцев для достижения цели
 
 budgetDay = Math.floor(budgetMonth / 30);
