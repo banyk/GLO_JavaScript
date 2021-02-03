@@ -45,27 +45,18 @@ const getExpensesMonth = function () {
 
   for (let i = 0; i < 2; i++) {
     expenses[i] = prompt('Введите обязательную статью расходов?');
-    for (let c = 0; c < 1; c++) {
-      sum += parseFloat(prompt(`Во сколько обойдется ${expenses[i]}?`));
-      if (!isNumber(sum)) {
-        sum = 0;
-        c--;
-        i--;
+    sum += parseFloat(prompt(`Во сколько обойдется ${expenses[i]}?`));
 
-        /*  
-        сначала я пытался сделать так
-        do {
-          sum += parseFloat(prompt(`Во сколько обойдется ${expenses[i]}?`));
-        } while (!isNumber(sum)); 
 
-        но если в sum сначала попадает число, а потом что-то другое, то это всё плюсуется и в итоге sum является Nan, из-за чего потом цикл не может закончиться
-
-        поэтому я решил сбрасывать sum и начинать цикл сначала
-        */
-
-      }
+    if (!isNumber(sum) && i === 0) {
+      sum = 0;
+      i--;
+    } else if (!isNumber(sum) && i === 1) {
+      sum = 0;
+      i -= 2;
     }
   }
+
   return sum;
 };
 let expensesAmount = getExpensesMonth();
