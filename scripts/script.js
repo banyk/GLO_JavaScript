@@ -33,11 +33,6 @@ showTypeOf(money);
 showTypeOf(deposit);
 showTypeOf(income);
 
-// let expenses1 = prompt('Введите обязательную статью расходов?', 'Коммуналка'),
-//   amount1 = prompt('Во сколько это обойдется?', 7540),
-//   expenses2 = prompt('Введите обязательную статью расходов?', 'Транспорт'),
-//   amount2 = prompt('Во сколько это обойдется?', 6830);
-
 let expenses = [];
 
 const getExpensesMonth = function () {
@@ -45,16 +40,16 @@ const getExpensesMonth = function () {
 
   for (let i = 0; i < 2; i++) {
     expenses[i] = prompt('Введите обязательную статью расходов?');
-    sum += parseFloat(prompt(`Во сколько обойдется ${expenses[i]}?`));
+    let result = 0;
 
-
-    if (!isNumber(sum) && i === 0) {
-      sum = 0;
-      i--;
-    } else if (!isNumber(sum) && i === 1) {
-      sum = 0;
-      i -= 2;
+    for (let j = 0; j < 1; j++) {
+      result += parseFloat(prompt(`Во сколько обойдется ${expenses[i]}?`));
+      if (!isNumber(result) && j === 0) {
+        result = 0;
+        j--;
+      }
     }
+    sum += result;
   }
 
   return sum;
