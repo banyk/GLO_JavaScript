@@ -1,13 +1,28 @@
 'use strict';
 
-let money = +prompt('Ваш месячный доход?', 48000),
+const isNumber = function (n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
+// функция проверки данных на число
+
+let money,
   income = 'Продажи книги',
   addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
-    'Еда, квартира, кошачий корм'),
+    'Кино, тортики, вкусняшки коту'),
   deposit = confirm('Есть ли у вас депозит в банке?'),
   mission = 800000,
   period = 10,
   budgetDay;
+
+console.log(addExpenses.toLowerCase().split(', '));
+
+const start = function () {
+  do {
+    money = prompt('Ваш месячный доход?');
+  } while (!isNumber(money));
+};
+
+start();
 
 const showTypeOf = function (data) {
   console.log(data, typeof data);
@@ -18,35 +33,67 @@ showTypeOf(money);
 showTypeOf(deposit);
 showTypeOf(income);
 
-console.log(addExpenses.toLowerCase().split(', '));
+// let expenses1 = prompt('Введите обязательную статью расходов?', 'Коммуналка'),
+//   amount1 = prompt('Во сколько это обойдется?', 7540),
+//   expenses2 = prompt('Введите обязательную статью расходов?', 'Транспорт'),
+//   amount2 = prompt('Во сколько это обойдется?', 6830);
 
-let expenses1 = prompt('Введите обязательную статью расходов?', 'Коммуналка'),
-  amount1 = +prompt('Во сколько это обойдется?', 7540),
-  expenses2 = prompt('Введите обязательную статью расходов?', 'Транспорт'),
-  amount2 = +prompt('Во сколько это обойдется?', 6830);
+let expenses = [];
 
+const getExpensesMonth = function () {
+  let sum = 0;
 
-const getExpensesMonth = function (exp1, exp2) {
-  return exp1 + exp2;
+  for (let i = 0; i < 2; i++) {
+    expenses[i] = prompt('Введите обязательную статью расходов?');
+    for (let c = 0; c < 1; c++) {
+      sum += parseFloat(prompt(`Во сколько обойдется ${expenses[i]}?`));
+      if (!isNumber(sum)) {
+        sum = 0;
+        c--;
+        i--;
+
+        /*  
+        сначала я пытался сделать так
+        do {
+          sum += parseFloat(prompt(`Во сколько обойдется ${expenses[i]}?`));
+        } while (!isNumber(sum)); 
+
+        но если в sum сначала попадает число, а потом что-то другое, то это всё плюсуется и в итоге sum является Nan, из-за чего потом цикл не может закончиться
+
+        поэтому я решил сбрасывать sum и начинать цикл сначала
+        */
+
+      }
+    }
+  }
+  return sum;
 };
-let expensesMonth = getExpensesMonth(amount1, amount2);
-console.log(`Сумма всех обязательных расходов: ${expensesMonth}`);
+let expensesAmount = getExpensesMonth();
+console.log(`Сумма всех обязательных расходов: ${expensesAmount}`);
 // функция подсчета суммы всех обязательных расходов
 
-const getAccumulatedMonth = function (money, expenses) {
-  return money - expenses;
+const getAccumulatedMonth = function () {
+  return money - expensesAmount;
 };
-let accumulatedMonth = getAccumulatedMonth(money, expensesMonth);
+let accumulatedMonth = getAccumulatedMonth();
 console.log(`Сумма накоплений за месяц: ${accumulatedMonth}`);
 // функция подсчета накоплений за месяц
 
-const getTargetMonth = function (accumulatedMonth) {
+const getTargetMonth = function () {
   return Math.ceil(mission / accumulatedMonth);
 };
-let targetMonth = getTargetMonth(accumulatedMonth);
-console.log(`Период достижения цели: ${targetMonth} месяца(-ев)`);
+let targetMonth = getTargetMonth();
 // функция подсчета периода достижения цели
 
+const isPositiveNum = function (num) {
+  if (num > 0) {
+    console.log(`Цель будет достигнута через: ${targetMonth} месяца(-ев)`);
+  } else {
+    console.log(`Цель не будет достигнута.`);
+  }
+};
+isPositiveNum(targetMonth);
+// функция вывода в консоль цели
 
 budgetDay = Math.floor(accumulatedMonth / 30);
 console.log('Бюджет на день: ', budgetDay);
