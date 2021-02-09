@@ -153,3 +153,46 @@ let showArrAsString = function () {
 };
 
 showArrAsString();
+
+
+const startButton = document.getElementById('start'),
+  // кнопка "рассчитать"
+
+  plusIncomeBtn = document.querySelector('.income button'),
+  // кнопка "+" добавления дополнительного ( != возможмного) дохода
+
+  plusExpensesBtn = document.querySelector('.expenses button'),
+  // кнопка "+" добавления 
+
+  depositCheckbox = document.querySelector('#deposit-check'),
+  // чекбокс на наличие депозита
+
+  resultFields = document.getElementsByClassName('result-total'),
+  // поля результатов 
+
+  salaryAmount = document.querySelector('.salary-amount'),
+  // месячный доход - основной доход
+
+  incomeName = document.querySelector('.income-title'),
+  // наименование дополнительного дохода (если есть)
+
+  incomeAmount = document.querySelector('.income-amount'),
+  // сумма дополнительного дохода
+
+  addIncomeItems = document.querySelectorAll('.additional_income-item'),
+  // поля возможного дохода (!= дополнительного)
+
+  expenseName = document.querySelector('.expenses-title'),
+  // наименование обязательного расхода
+
+  expenseAmount = document.querySelector('.expenses-amount'),
+  // сумма обязательного расхода
+
+  addExpensesItem = document.querySelectorAll('.additional_expenses-item'),
+  // поле возможного расхода (!= дополнительного)
+
+  targetAmount = document.querySelector('.target-amount'),
+  // сумма цели 
+
+  missionPeriod = document.querySelector('.period-select');
+// период достижения цели 
