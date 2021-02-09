@@ -5,6 +5,54 @@ const isNumber = function (n) {
 };
 // функция проверки данных на число
 
+const startButton = document.getElementById('start'),
+  // кнопка "рассчитать"
+
+  // plusIncomeBtn = document.querySelector('.income button'),
+  plusIncomeBtn = document.getElementsByTagName('button')[0],
+  // кнопка "+" добавления дополнительного ( != возможмного) дохода
+
+  plusExpensesBtn = document.getElementsByTagName('button')[1],
+
+  // кнопка "+" добавления 
+
+  /* 
+  depositCheckbox = document.querySelector('#deposit-check'),
+  "Чекбокс по id через querySelector" в задании по идее так было написано
+  */
+  depositCheckbox = document.getElementById('deposit-check'),
+  // чекбокс на наличие депозита
+
+  resultFields = document.getElementsByClassName('result-total'),
+  // поля результатов 
+
+  salaryAmount = document.querySelector('.salary-amount'),
+  // месячный доход - основной доход
+
+  incomeName = document.querySelector('.income-title'),
+  // наименование дополнительного дохода (если есть)
+
+  incomeAmount = document.querySelector('.income-amount'),
+  // сумма дополнительного дохода
+
+  addIncomeItems = document.querySelectorAll('.additional_income-item'),
+  // поля возможного дохода (!= дополнительного)
+
+  expenseName = document.querySelector('.expenses-title'),
+  // наименование обязательного расхода
+
+  expenseAmount = document.querySelector('.expenses-amount'),
+  // сумма обязательного расхода
+
+  addExpensesItem = document.querySelectorAll('.additional_expenses-item'),
+  // поле возможного расхода (!= дополнительного)
+
+  targetAmount = document.querySelector('.target-amount'),
+  // сумма цели 
+
+  missionPeriod = document.querySelector('.period-select');
+// период достижения цели 
+
 let money,
   start = function () {
     do {
@@ -111,16 +159,12 @@ let appData = {
   }
 };
 
-
-
 appData.asking();
 appData.getInfoDeposit();
-
 
 appData.expensesMonth = appData.getExpensesMonth();
 console.log(`Сумма всех обязательных расходов: ${appData.expensesMonth}`);
 // функция подсчета суммы всех обязательных расходов
-
 
 appData.getBudget();
 console.log(`Сумма накоплений за месяц: ${appData.budgetMonth}`);
@@ -153,52 +197,3 @@ let showArrAsString = function () {
 };
 
 showArrAsString();
-
-
-const startButton = document.getElementById('start'),
-  // кнопка "рассчитать"
-
-  // plusIncomeBtn = document.querySelector('.income button'),
-  plusIncomeBtn = document.getElementsByTagName('button')[0],
-  // кнопка "+" добавления дополнительного ( != возможмного) дохода
-
-  plusExpensesBtn = document.getElementsByTagName('button')[1],
-
-  // кнопка "+" добавления 
-
-  /* 
-  depositCheckbox = document.querySelector('#deposit-check'),
-  "Чекбокс по id через querySelector" в задании по идее так было написано
-  */
-  depositCheckbox = document.getElementById('deposit-check'),
-  // чекбокс на наличие депозита
-
-  resultFields = document.getElementsByClassName('result-total'),
-  // поля результатов 
-
-  salaryAmount = document.querySelector('.salary-amount'),
-  // месячный доход - основной доход
-
-  incomeName = document.querySelector('.income-title'),
-  // наименование дополнительного дохода (если есть)
-
-  incomeAmount = document.querySelector('.income-amount'),
-  // сумма дополнительного дохода
-
-  addIncomeItems = document.querySelectorAll('.additional_income-item'),
-  // поля возможного дохода (!= дополнительного)
-
-  expenseName = document.querySelector('.expenses-title'),
-  // наименование обязательного расхода
-
-  expenseAmount = document.querySelector('.expenses-amount'),
-  // сумма обязательного расхода
-
-  addExpensesItem = document.querySelectorAll('.additional_expenses-item'),
-  // поле возможного расхода (!= дополнительного)
-
-  targetAmount = document.querySelector('.target-amount'),
-  // сумма цели 
-
-  missionPeriod = document.querySelector('.period-select');
-// период достижения цели 
