@@ -158,13 +158,19 @@ showArrAsString();
 const startButton = document.getElementById('start'),
   // кнопка "рассчитать"
 
-  plusIncomeBtn = document.querySelector('.income button'),
+  // plusIncomeBtn = document.querySelector('.income button'),
+  plusIncomeBtn = document.getElementsByTagName('button')[0],
   // кнопка "+" добавления дополнительного ( != возможмного) дохода
 
-  plusExpensesBtn = document.querySelector('.expenses button'),
+  plusExpensesBtn = document.getElementsByTagName('button')[1],
+
   // кнопка "+" добавления 
 
+  /* 
   depositCheckbox = document.querySelector('#deposit-check'),
+  "Чекбокс по id через querySelector" в задании по идее так было написано
+  */
+  depositCheckbox = document.getElementById('deposit-check'),
   // чекбокс на наличие депозита
 
   resultFields = document.getElementsByClassName('result-total'),
