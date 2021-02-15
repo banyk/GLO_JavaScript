@@ -87,15 +87,30 @@ let appData = {
     this.showResult();
   },
   reset: function () {
-
     textInputs = document.querySelectorAll('input[type=text]');
     textInputs.forEach(function (item) {
       item.value = '';
-
       item.removeAttribute('disabled', 'disabled');
     });
     periodSelect.value = 1;
     periodNumber.textContent = 1;
+
+    if (expensesItems[2] && expensesItems[1]) {
+      expensesItems[1].remove();
+      expensesItems[2].remove();
+      expensesPlusBtn.style.display = 'block';
+    } else if (expensesItems[1]) {
+      expensesItems[1].remove();
+    }
+
+    if (incomeItems[2] && incomeItems[1]) {
+      incomeItems[1].remove();
+      incomeItems[2].remove();
+      incomePlusBtn.style.display = 'block';
+    } else if (incomeItems[1]) {
+      incomeItems[1].remove();
+    }
+    // incomeItems
 
   },
   showResult: function () {
@@ -234,8 +249,9 @@ startBtn.addEventListener('click', function (e) {
 });
 
 cancelBtn.addEventListener('click', function (e) {
-
   appData.reset();
+  startBtn.style.display = 'block';
+  cancelBtn.style.display = 'none';
 });
 
 incomePlusBtn.addEventListener('click', appData.addIncomeBlock);
