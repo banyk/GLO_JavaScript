@@ -7,18 +7,9 @@ const isNumber = function (n) {
 
 let startBtn = document.getElementById('start'),
   cancelBtn = document.getElementById('cancel'),
-  // кнопка "рассчитать"
-
   incomePlusBtn = document.getElementsByTagName('button')[0],
-  // plusIncomeBtn = document.querySelector('.income button'),
-  // кнопка "+" добавления дополнительного ( != возможмного) дохода
-
   expensesPlusBtn = document.getElementsByTagName('button')[1],
-  // кнопка "+" добавления 
-
   depositCheckbox = document.getElementById('deposit-check'),
-  // чекбокс на наличие депозита
-
   budgetDayValue = document.getElementsByClassName('result-total')[1],
   budgetMonthValue = document.getElementsByClassName('result-total')[0],
   expensesMonthValue = document.getElementsByClassName('result-total')[2],
@@ -26,39 +17,17 @@ let startBtn = document.getElementById('start'),
   addExpensesValue = document.getElementsByClassName('result-total')[4],
   periodValue = document.getElementsByClassName('result-total')[5],
   targetMonthValue = document.getElementsByClassName('result-total')[6],
-  // поля результатов с правой стороный
-
   salaryAmount = document.querySelector('.salary-amount'),
-  // месячный доход - основной доход
-
   incomeTitle = document.querySelector('.income-title'),
-  // наименование дополнительного дохода (если есть)
-
   incomeItems = document.querySelectorAll('.income-items'),
-  //  
-
   addIncomeItems = document.querySelectorAll('.additional_income-item'),
-  // поля возможного дохода (!= дополнительного)
-
   expenseTitle = document.querySelector('.expenses-title'),
-  // наименование обязательного расхода
-
   expensesItems = document.querySelectorAll('.expenses-items'),
-  //  
-
   addExpensesItem = document.querySelector('.additional_expenses-item'),
-  // поле возможного расхода (!= дополнительного)
-
   targetAmount = document.querySelector('.target-amount'),
-  // сумма цели 
-
   periodSelect = document.querySelector('.period-select'),
   textInputs = document.querySelectorAll('input[type=text]'),
-
   periodNumber = document.querySelector('.period-amount');
-// период достижения цели 
-
-
 
 let appData = {
   budget: 0,
@@ -110,7 +79,6 @@ let appData = {
     } else if (incomeItems[1]) {
       incomeItems[1].remove();
     }
-    // incomeItems
 
   },
   showResult: function () {
