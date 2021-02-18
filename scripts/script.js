@@ -99,7 +99,9 @@ class AppData {
     this.getExpensesMonth();
     this.getAddExpenses();
     this.getAddIncome();
-    this.getInfoDeposit();
+    if (depositCheckbox.checked) {
+      this.getInfoDeposit();
+    }
     this.getBudget();
     this.disableInputs();
 
@@ -226,6 +228,7 @@ class AppData {
   }
 
   getInfoDeposit() {
+
     this.isCorrectValue();
     if (this.deposit) {
       this.percentDeposit = depositPercent.value;
