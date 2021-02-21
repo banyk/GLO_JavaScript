@@ -1,8 +1,6 @@
 'use strict';
 
-const isNumber = function (n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-};
+const isNumber = n => !isNaN(parseFloat(n)) && isFinite(n);
 // функция проверки данных на число
 
 const startBtn = document.getElementById('start'),
@@ -64,16 +62,15 @@ class AppData {
     this.moneyDeposit = 0;
     textInputs = document.querySelectorAll('input[type=text]');
 
-    textInputs.forEach(function (item) {
+    textInputs.forEach(item => {
       item.value = '';
-      item.removeAttribute('disabled', 'disabled');
+      item.removeAttribute('disabled', 'true');
     });
     periodSelect.value = 1;
     periodNumber.textContent = 1;
     depositCheckbox.checked = false;
     this.depositHandler();
     this.changePercent();
-
 
     if (expensesItems[2] && expensesItems[1]) {
       expensesItems[1].remove();
@@ -123,7 +120,6 @@ class AppData {
     cloneExpensesItems.querySelector('.expenses-title').value = null;
     cloneExpensesItems.querySelector('.expenses-amount').value = null;
 
-
     if (expensesItems.length === 3) {
       expensesPlusBtn.style.display = 'none';
     }
@@ -132,25 +128,26 @@ class AppData {
     let cloneIncomeItems = incomeItems[0].cloneNode(true);
     incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlusBtn);
     incomeItems = document.querySelectorAll('.income-items');
+    cloneIncomeItems.querySelector('.income-title').value = null;
+    cloneIncomeItems.querySelector('.income-amount').value = null;
 
     if (incomeItems.length === 3) {
       incomePlusBtn.style.display = 'none';
     }
   }
   getExpenses() {
-    expensesItems.forEach((item) => {
-      let itemExpenses = item.querySelector('.expenses-title').value;
-      let cashExpenses = item.querySelector('.expenses-amount').value;
+    expensesItems.forEach(item => {
+      let itemExpenses = item.querySelector('.expenses-title').value,
+        cashExpenses = item.querySelector('.expenses-amount').value;
       if (itemExpenses !== '' && cashExpenses !== '') {
         this.expenses[itemExpenses] = +cashExpenses;
       }
     });
   }
   getIncome() {
-    incomeItems.forEach((item) => {
+    incomeItems.forEach(item => {
       let itemIncome = item.querySelector('.income-title').value,
         cashIncome = item.querySelector('.income-amount').value;
-
       if (itemIncome !== '' && cashIncome !== '') {
         this.income[itemIncome] = cashIncome;
       }
@@ -161,7 +158,7 @@ class AppData {
   }
   getAddExpenses() {
     let addExpenses = addExpensesItem.value.split(',');
-    addExpenses.forEach((item) => {
+    addExpenses.forEach(item => {
       item = item.trim();
       if (item !== '') {
         this.addExpenses.push(item);
@@ -169,7 +166,7 @@ class AppData {
     });
   }
   getAddIncome() {
-    addIncomeItems.forEach((item) => {
+    addIncomeItems.forEach(item => {
       let itemValue = item.value.trim();
       if (itemValue !== '') {
         this.addIncome.push(itemValue);
@@ -177,8 +174,8 @@ class AppData {
     });
   }
   getExpensesMonth() {
-    let result = 0;
-    let sum = 0;
+    let result = 0,
+      sum = 0;
     for (let key in this.expenses) {
       result += this.expenses[key];
     }
@@ -211,8 +208,8 @@ class AppData {
   }
   disableInputs() {
     textInputs = document.querySelectorAll('input[type=text]');
-    textInputs.forEach((item) => {
-      item.setAttribute('disabled', 'disabled');
+    textInputs.forEach(item => {
+      item.setAttribute('disabled', 'true');
     });
   }
 
@@ -228,7 +225,6 @@ class AppData {
   }
 
   getInfoDeposit() {
-
     this.isCorrectValue();
     if (this.deposit) {
       this.percentDeposit = depositPercent.value;
@@ -285,7 +281,7 @@ class AppData {
     incomePlusBtn.addEventListener('click', this.addIncomeBlock);
     expensesPlusBtn.addEventListener('click', this.addExpensesBlock);
 
-    periodSelect.addEventListener('input', (e) => {
+    periodSelect.addEventListener('input', e => {
       periodNumber.textContent = e.target.value;
       periodValue.value = this.calcSavedMoney();
     });
@@ -297,7 +293,6 @@ class AppData {
 }
 
 const appData = new AppData();
-
 
 appData.eventListeners();
 
