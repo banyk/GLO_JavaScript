@@ -27,6 +27,7 @@ const startBtn = document.getElementById('start'),
   depositAmount = document.querySelector('.deposit-amount'),
   depositPercent = document.querySelector('.deposit-percent');
 
+
 let incomeItems = document.querySelectorAll('.income-items'),
   textInputs = document.querySelectorAll('input[type=text]'),
   expensesItems = document.querySelectorAll('.expenses-items');
@@ -117,8 +118,8 @@ class AppData {
     let cloneExpensesItems = expensesItems[0].cloneNode(true);
     expensesItems[0].parentNode.insertBefore(cloneExpensesItems, expensesPlusBtn);
     expensesItems = document.querySelectorAll('.expenses-items');
-    cloneExpensesItems.querySelector('.expenses-title').value = null;
-    cloneExpensesItems.querySelector('.expenses-amount').value = null;
+    cloneExpensesItems.children[0].value = null;
+    cloneExpensesItems.children[1].value = null;
 
     if (expensesItems.length === 3) {
       expensesPlusBtn.style.display = 'none';
@@ -128,13 +129,15 @@ class AppData {
     let cloneIncomeItems = incomeItems[0].cloneNode(true);
     incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlusBtn);
     incomeItems = document.querySelectorAll('.income-items');
-    cloneIncomeItems.querySelector('.income-title').value = null;
-    cloneIncomeItems.querySelector('.income-amount').value = null;
+    cloneIncomeItems.children[0].value = null;
+    cloneIncomeItems.children[1].value = null;
 
     if (incomeItems.length === 3) {
       incomePlusBtn.style.display = 'none';
     }
+
   }
+
   getExpenses() {
     expensesItems.forEach(item => {
       let itemExpenses = item.querySelector('.expenses-title').value,
@@ -272,7 +275,6 @@ class AppData {
     });
 
     cancelBtn.addEventListener('click', () => {
-      // this.reset.bind(this);
       this.reset();
       startBtn.style.display = 'block';
       cancelBtn.style.display = 'none';
@@ -287,6 +289,18 @@ class AppData {
     });
 
     depositCheckbox.addEventListener('change', this.depositHandler.bind(this));
+
+
+    document.addEventListener('input', event => {
+      const target = event.target;
+
+      if (target.matches('[placeholder="Сумма"]')) {
+        target.value = target.value.replace(/[^\d]/gi, '');
+      }
+      if (target.matches('[placeholder="Наименование"]')) {
+        target.value = target.value.replace(/\w/gi, '');
+      }
+    });
   }
 
 
